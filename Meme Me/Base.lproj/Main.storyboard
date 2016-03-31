@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Meme_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,60 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BTw-Bn-qO0">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="yFh-Va-TaR"/>
+                                    <barButtonItem systemItem="camera" id="AHh-nc-P2U">
+                                        <connections>
+                                            <action selector="takeImageFromCamera:" destination="BYZ-38-t0r" id="Jz7-Rp-Ibg"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="50" style="plain" systemItem="fixedSpace" id="2qv-dH-pEP"/>
+                                    <barButtonItem title="Album" id="22L-cd-3HO">
+                                        <connections>
+                                            <action selector="loadImageFromAlbum:" destination="BYZ-38-t0r" id="X3b-4s-LNk"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="WGX-tB-4Ek"/>
+                                </items>
+                            </toolbar>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n0h-ae-svK">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <navigationItem id="o87-iC-UZh">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="Vwb-UG-azX"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Cancle" id="8ku-bV-IO0"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mVz-cu-xOv">
+                                <rect key="frame" x="252" y="269" width="96" height="62"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="n0h-ae-svK" firstAttribute="trailing" secondItem="BTw-Bn-qO0" secondAttribute="trailing" id="3lG-Xk-0k8"/>
+                            <constraint firstItem="n0h-ae-svK" firstAttribute="leading" secondItem="BTw-Bn-qO0" secondAttribute="leading" id="4Yg-pi-6G2"/>
+                            <constraint firstItem="BTw-Bn-qO0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ICf-8n-Prv"/>
+                            <constraint firstItem="BTw-Bn-qO0" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="Z5z-Uu-Ycz"/>
+                            <constraint firstItem="mVz-cu-xOv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fAv-By-Qio"/>
+                            <constraint firstItem="mVz-cu-xOv" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="gwN-S0-Wfr"/>
+                            <constraint firstAttribute="trailing" secondItem="BTw-Bn-qO0" secondAttribute="trailing" id="mOu-cl-GLY"/>
+                            <constraint firstItem="n0h-ae-svK" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="oCS-3W-wzx"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cameraButton" destination="AHh-nc-P2U" id="pWe-sN-dxR"/>
+                        <outlet property="cancelButton" destination="8ku-bV-IO0" id="TjW-XG-quJ"/>
+                        <outlet property="imageView" destination="mVz-cu-xOv" id="SOS-Um-tPk"/>
+                        <outlet property="shareButton" destination="Vwb-UG-azX" id="SqL-Gi-kJ8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="228" y="357"/>
         </scene>
     </scenes>
 </document>
