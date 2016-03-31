@@ -40,7 +40,7 @@
                                 <items>
                                     <navigationItem id="o87-iC-UZh">
                                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="Vwb-UG-azX"/>
-                                        <barButtonItem key="rightBarButtonItem" title="Cancle" id="8ku-bV-IO0"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="8ku-bV-IO0"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
