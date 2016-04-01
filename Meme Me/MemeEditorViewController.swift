@@ -20,7 +20,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var topMemeText: UITextField!
     @IBOutlet weak var bottomMemeText: UITextField!
     
-    
+    var savedMemes = [Meme]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,13 +158,18 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         return memedImage
     }
     
+    func saveMeme(memedImage: UIImage) {
+        let savedMeme = Meme(topMemeText: topMemeText.text, bottomMemeText: bottomMemeText.text!, memedImage: memedImage, originalImage: imageView.image!)
+        savedMemes.append(savedMeme)
+    }
+    
     @IBAction func shareMeme(sender: UIBarButtonItem) {
         let sharedMeme = generateMemedImage()
         let activityVC = UIActivityViewController(activityItems: [sharedMeme], applicationActivities: nil)
         
         activityVC.completionWithItemsHandler = {(activityType, completed:Bool, returnedItems:[AnyObject]?, error: NSError?) in
-            
             if completed {
+                self.saveMeme(sharedMeme)
                 activityVC.dismissViewControllerAnimated(true, completion: nil)
             }
         }
