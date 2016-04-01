@@ -44,18 +44,36 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mVz-cu-xOv">
-                                <rect key="frame" x="252" y="269" width="96" height="62"/>
-                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FNN-D4-cj9">
+                                <rect key="frame" x="0.0" y="44" width="600" height="512"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mVz-cu-xOv">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="512"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="mVz-cu-xOv" secondAttribute="trailing" id="9kk-sG-1Dc"/>
+                                    <constraint firstAttribute="bottom" secondItem="mVz-cu-xOv" secondAttribute="bottom" id="A8e-jn-6Aa"/>
+                                    <constraint firstItem="mVz-cu-xOv" firstAttribute="leading" secondItem="FNN-D4-cj9" secondAttribute="leading" id="Ns1-AI-uqE"/>
+                                    <constraint firstItem="mVz-cu-xOv" firstAttribute="centerX" secondItem="FNN-D4-cj9" secondAttribute="centerX" id="O3n-W3-9UU"/>
+                                    <constraint firstItem="mVz-cu-xOv" firstAttribute="top" secondItem="FNN-D4-cj9" secondAttribute="top" id="OcG-0S-XBR"/>
+                                    <constraint firstItem="mVz-cu-xOv" firstAttribute="centerY" secondItem="FNN-D4-cj9" secondAttribute="centerY" id="nHK-yQ-Nbs"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="UVo-J1-vUR"/>
+                                </connections>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="n0h-ae-svK" firstAttribute="trailing" secondItem="BTw-Bn-qO0" secondAttribute="trailing" id="3lG-Xk-0k8"/>
+                            <constraint firstItem="FNN-D4-cj9" firstAttribute="leading" secondItem="n0h-ae-svK" secondAttribute="leading" id="3tT-9E-kwd"/>
                             <constraint firstItem="n0h-ae-svK" firstAttribute="leading" secondItem="BTw-Bn-qO0" secondAttribute="leading" id="4Yg-pi-6G2"/>
+                            <constraint firstItem="FNN-D4-cj9" firstAttribute="trailing" secondItem="n0h-ae-svK" secondAttribute="trailing" id="8gD-8H-M2S"/>
                             <constraint firstItem="BTw-Bn-qO0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ICf-8n-Prv"/>
                             <constraint firstItem="BTw-Bn-qO0" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="Z5z-Uu-Ycz"/>
-                            <constraint firstItem="mVz-cu-xOv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fAv-By-Qio"/>
-                            <constraint firstItem="mVz-cu-xOv" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="gwN-S0-Wfr"/>
+                            <constraint firstItem="FNN-D4-cj9" firstAttribute="top" secondItem="n0h-ae-svK" secondAttribute="bottom" id="kXX-Rc-YTv"/>
+                            <constraint firstItem="FNN-D4-cj9" firstAttribute="bottom" secondItem="BTw-Bn-qO0" secondAttribute="top" id="m68-FZ-jaV"/>
                             <constraint firstAttribute="trailing" secondItem="BTw-Bn-qO0" secondAttribute="trailing" id="mOu-cl-GLY"/>
                             <constraint firstItem="n0h-ae-svK" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="oCS-3W-wzx"/>
                         </constraints>
@@ -63,6 +81,7 @@
                     <connections>
                         <outlet property="cameraButton" destination="AHh-nc-P2U" id="pWe-sN-dxR"/>
                         <outlet property="cancelButton" destination="8ku-bV-IO0" id="TjW-XG-quJ"/>
+                        <outlet property="imageScrollView" destination="FNN-D4-cj9" id="iQ1-g1-Xfo"/>
                         <outlet property="imageView" destination="mVz-cu-xOv" id="SOS-Um-tPk"/>
                         <outlet property="shareButton" destination="Vwb-UG-azX" id="SqL-Gi-kJ8"/>
                     </connections>

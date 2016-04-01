@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3459DBB51CAE6BA3002DD8CE /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3459DBB41CAE6BA3002DD8CE /* Meme.swift */; };
 		34BF66681CADA7E100F33792 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BF66671CADA7E100F33792 /* AppDelegate.swift */; };
 		34BF666A1CADA7E100F33792 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BF66691CADA7E100F33792 /* ViewController.swift */; };
 		34BF666D1CADA7E100F33792 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34BF666B1CADA7E100F33792 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3459DBB41CAE6BA3002DD8CE /* Meme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 		34BF66641CADA7E100F33792 /* Meme Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meme Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		34BF66671CADA7E100F33792 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34BF66691CADA7E100F33792 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				34BF666E1CADA7E100F33792 /* Assets.xcassets */,
 				34BF66701CADA7E100F33792 /* LaunchScreen.storyboard */,
 				34BF66731CADA7E100F33792 /* Info.plist */,
+				3459DBB41CAE6BA3002DD8CE /* Meme.swift */,
 			);
 			path = "Meme Me";
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3459DBB51CAE6BA3002DD8CE /* Meme.swift in Sources */,
 				34BF666A1CADA7E100F33792 /* ViewController.swift in Sources */,
 				34BF66681CADA7E100F33792 /* AppDelegate.swift in Sources */,
 			);
@@ -484,6 +488,7 @@
 				34BF668E1CADA7E100F33792 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		34BF668F1CADA7E100F33792 /* Build configuration list for PBXNativeTarget "Meme MeTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +497,7 @@
 				34BF66911CADA7E100F33792 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		34BF66921CADA7E100F33792 /* Build configuration list for PBXNativeTarget "Meme MeUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +506,7 @@
 				34BF66941CADA7E100F33792 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

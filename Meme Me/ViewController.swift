@@ -8,13 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate {
 
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var imageScrollView: UIScrollView!
     
     let imagePicker = UIImagePickerController()
     
@@ -24,6 +25,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         imagePicker.delegate = self
         imagePicker.allowsEditing = false
+        imageScrollView.minimumZoomScale = 1.0
+        imageScrollView.maximumZoomScale = 6.0
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -42,13 +45,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func loadImageFromAlbum(sender: AnyObject) {
         imagePicker.sourceType = .PhotoLibrary
-        
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
     @IBAction func takeImageFromCamera(sender: AnyObject) {
         imagePicker.sourceType = .Camera
-        
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
@@ -66,6 +67,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func prefersStatusBarHidden() -> Bool {
         return true
+    }
+    
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return imageView
     }
 
 
