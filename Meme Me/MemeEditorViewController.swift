@@ -47,10 +47,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-        
     }
-    
-    
+
     @IBAction func loadImageFromAlbum(sender: UIBarButtonItem) {
         getImageFromSource(.PhotoLibrary)
     }
@@ -80,7 +78,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        return false
+        return true
     }
     
     func hideToolBars(visible: Bool) {
@@ -90,6 +88,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     func getImageFromSource(sourceTpye: UIImagePickerControllerSourceType) {
         let imagePicker = UIImagePickerController()
+        imagePicker.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
         imagePicker.delegate = self
         imagePicker.allowsEditing = false
         imagePicker.sourceType = sourceTpye
@@ -100,15 +99,22 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         let memeTextAttributes = [
             NSStrokeColorAttributeName : UIColor.blackColor(),
             NSForegroundColorAttributeName : UIColor.whiteColor(),
-            NSFontAttributeName : UIFont(name: "Impact", size: 40)!,
-            NSStrokeWidthAttributeName : 4.0
+            NSFontAttributeName : UIFont(name: "Impact", size: 35)!,
+            NSStrokeWidthAttributeName : -1.0
         ]
         
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.text = text
         textField.delegate = self
         textField.textAlignment = .Center
         textField.minimumFontSize = 12
         textField.adjustsFontSizeToFitWidth = true
-        textField.defaultTextAttributes = memeTextAttributes
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if (textField.text == "TOP" || textField.text == "BOTTOM") {
+            textField.text = ""
+        }
     }
     
     func subscribeToKeyboardNotifications() {
@@ -141,6 +147,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         return keyboardSize.CGRectValue().height
     }
     
+    //Dismiss Keyboard, when user touches outside a textfield
+    //http://samwize.com/2014/03/27/dismiss-keyboard-when-tap-outside-a-uitextfield-slash-uitextview/
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
     func generateMemedImage() -> UIImage
     {
         hideToolBars(true)
@@ -158,8 +170,16 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         return memedImage
     }
     
+    @IBAction func cancel(sender: UIBarButtonItem) {
+        shareButton.enabled = false
+        imageView.image = nil
+        initTextField("TOP", textField: topMemeText)
+        initTextField("BOTTOM", textField: bottomMemeText)
+        cancelButton.enabled = false
+    }
+    
     func saveMeme(memedImage: UIImage) {
-        let savedMeme = Meme(topMemeText: topMemeText.text, bottomMemeText: bottomMemeText.text!, memedImage: memedImage, originalImage: imageView.image!)
+        let savedMeme = Meme(topMemeText: topMemeText.text, bottomMemeText: bottomMemeText.text, memedImage: memedImage, originalImage: imageView.image!)
         savedMemes.append(savedMeme)
     }
     
