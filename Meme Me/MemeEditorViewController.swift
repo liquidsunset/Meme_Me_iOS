@@ -20,8 +20,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var topMemeText: UITextField!
     @IBOutlet weak var bottomMemeText: UITextField!
     
-    var savedMemes = [Meme]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -176,11 +174,15 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         initTextField("TOP", textField: topMemeText)
         initTextField("BOTTOM", textField: bottomMemeText)
         cancelButton.enabled = false
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     func saveMeme(memedImage: UIImage) {
         let savedMeme = Meme(topMemeText: topMemeText.text, bottomMemeText: bottomMemeText.text, memedImage: memedImage, originalImage: imageView.image!)
-        savedMemes.append(savedMeme)
+        
+        let object = UIApplication.sharedApplication().delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(savedMeme)
     }
     
     @IBAction func shareMeme(sender: UIBarButtonItem) {
