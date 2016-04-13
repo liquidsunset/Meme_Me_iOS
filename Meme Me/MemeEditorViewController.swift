@@ -20,6 +20,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var topMemeText: UITextField!
     @IBOutlet weak var bottomMemeText: UITextField!
     
+    let memeManger = MemeManager.sharedInstance
+    var meme: MemeManager.Meme!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -178,11 +181,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func saveMeme(memedImage: UIImage) {
-        let savedMeme = Meme(topMemeText: topMemeText.text, bottomMemeText: bottomMemeText.text, memedImage: memedImage, originalImage: imageView.image!)
-        
-        let object = UIApplication.sharedApplication().delegate
-        let appDelegate = object as! AppDelegate
-        appDelegate.memes.append(savedMeme)
+        memeManger.addMemeWithFields(topMemeText.text, bottomMemeText: bottomMemeText.text, memedImage: memedImage, originalImage: imageView.image!)
     }
     
     @IBAction func shareMeme(sender: UIBarButtonItem) {

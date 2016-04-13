@@ -37,20 +37,20 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalCompressionResistancePriority="50" verticalCompressionResistancePriority="50" tableViewCell="aKs-Yz-jT9" id="cSd-E4-UXn">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="99"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Top" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mh5-N3-1Fu">
-                                            <rect key="frame" x="126" y="16" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r3t-vo-9bh">
                                             <rect key="frame" x="8" y="10" width="80" height="80"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bottom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2pv-dg-da2">
-                                            <rect key="frame" x="126" y="69" width="102" height="21"/>
+                                            <rect key="frame" x="114" y="64" width="390" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Top" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mh5-N3-1Fu">
+                                            <rect key="frame" x="114" y="16" width="390" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -77,9 +77,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <segue destination="EQI-jn-QUw" kind="show" identifier="MemeDetail" id="cCd-m1-ai0"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6US-2t-3hp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -165,7 +162,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="flowLayout" destination="j09-4R-6oi" id="W4V-KK-5Cy"/>
-                        <segue destination="EQI-jn-QUw" kind="show" identifier="MemeDetail" id="8W9-eJ-Fdy"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lkb-GZ-GKx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -188,7 +184,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <items>
                                     <navigationItem title="Meme Detail" id="zSd-eR-C4l">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="g8K-al-8yw"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="g8K-al-8yw">
+                                            <connections>
+                                                <action selector="showMemeEditor:" destination="EQI-jn-QUw" id="XZ1-qu-8O2"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -207,10 +207,13 @@
                             <constraint firstItem="crs-uh-ZMQ" firstAttribute="leading" secondItem="Zh1-1U-f2o" secondAttribute="leading" id="iDo-4L-aBv"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="memeImageView" destination="Zh1-1U-f2o" id="Wbk-wR-unU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cbD-vM-O5b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1607" y="100"/>
+            <point key="canvasLocation" x="1579" y="-261"/>
         </scene>
         <!--MemeEditorViewController-->
         <scene sceneID="tne-QT-ifu">
@@ -315,14 +318,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2517" y="92"/>
+            <point key="canvasLocation" x="1579" y="450"/>
         </scene>
     </scenes>
     <resources>
         <image name="collection" width="30" height="30"/>
         <image name="table" width="30" height="30"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="8W9-eJ-Fdy"/>
-    </inferredMetricsTieBreakers>
 </document>

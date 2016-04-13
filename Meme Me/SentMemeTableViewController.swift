@@ -10,14 +10,13 @@ import Foundation
 import UIKit
 
 class SentMemeTableViewController: UITableViewController {
-    var memes: [Meme] {
-        return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
-    }
+    
+    let memeManager = MemeManager.sharedInstance
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-      
-        if memes.count == 0 {
+
+        if memeManager.getSize() == 0 {
             let memeEditorcontroller = storyboard?.instantiateViewControllerWithIdentifier("MemeEditorViewController") as! MemeEditorViewController
             presentViewController(memeEditorcontroller, animated: true, completion: nil)
         }
@@ -26,28 +25,40 @@ class SentMemeTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return memes.count
+        return memeManager.getSize()
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let memeCell = tableView.dequeueReusableCellWithIdentifier("MemeCell") as! SentMemeTableViewCell
-        let meme = memes[indexPath.row]
+        let meme = memeManager.getMemeAtIndex(indexPath.row)
         
-        
-            memeCell.bottomText.text = meme.bottomMemeText
-            memeCell.topText.text = meme.topMemeText
-            memeCell.memeImageView.image = meme.memedImage
+        memeCell.bottomText.text = meme.bottomMemeText
+        memeCell.topText.text = meme.topMemeText
+        memeCell.memeImageView.image = meme.memedImage
 
-        
         return memeCell
-        
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let memeDetailController = storyboard?.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
-        presentViewController(memeDetailController, animated: true, completion: nil)
+        let memeDetailViewController = storyboard?.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
+        memeDetailViewController.meme = memeManager.getMemeAtIndex(indexPath.row)
+        navigationController?.pushViewController(memeDetailViewController, animated: true)
     }
     
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            memeManager.removeMemeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            
+            if memeManager.getSize() == 0 {
+                showMemeEditor()
+            }
+        }
+    }
     
     @IBAction func openMemeEditor(sender: UIBarButtonItem) {
         showMemeEditor()
