@@ -10,7 +10,6 @@ import UIKit
 
 class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
-
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIBarButtonItem!
@@ -26,10 +25,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        shareButton.enabled = false
-        cancelButton.enabled = false
 
+        cancelButton.enabled = false
+        shareButton.enabled = false
         initTextField("TOP", textField: topMemeText)
         initTextField("BOTTOM", textField: bottomMemeText)
     }
@@ -172,12 +170,17 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func cancel(sender: UIBarButtonItem) {
-        shareButton.enabled = false
-        imageView.image = nil
-        initTextField("TOP", textField: topMemeText)
-        initTextField("BOTTOM", textField: bottomMemeText)
-        cancelButton.enabled = false
-        dismissViewControllerAnimated(true, completion: nil)
+        
+        if memeManger.getSize() == 0 {
+            shareButton.enabled = false
+            imageView.image = nil
+            initTextField("TOP", textField: topMemeText)
+            initTextField("BOTTOM", textField: bottomMemeText)
+            cancelButton.enabled = false
+        } else {
+            dismissViewControllerAnimated(true, completion: nil)
+        }
+        
     }
     
     func saveMeme(memedImage: UIImage) {
@@ -192,10 +195,20 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             if completed {
                 self.saveMeme(sharedMeme)
                 activityVC.dismissViewControllerAnimated(true, completion: nil)
+                self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
         
         presentViewController(activityVC, animated: true, completion: nil)
+    }
+    
+    func setMeme(meme: MemeManager.Meme) {
+        topMemeText.text = meme.topMemeText
+        bottomMemeText.text = meme.bottomMemeText
+        imageView.image = meme.originalImage
+        
+        shareButton.enabled = true
+        cancelButton.enabled = true
     }
 }
 

@@ -9,9 +9,10 @@
 import Foundation
 import UIKit
 
-class SentMemeCollectionViewController : UICollectionViewController, UIGestureRecognizerDelegate {
+class SentMemeCollectionViewController : UICollectionViewController {
     
     var memeManager = MemeManager.sharedInstance
+    var longPressTarget: (cell: UICollectionViewCell, indexPath: NSIndexPath)?
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
@@ -22,20 +23,27 @@ class SentMemeCollectionViewController : UICollectionViewController, UIGestureRe
         
         flowLayout.minimumInteritemSpacing = space
         flowLayout.itemSize = CGSizeMake(dimension, dimension)
-        
-        //http://stackoverflow.com/questions/29241691/how-do-i-use-uilongpressgesturerecognizer-with-a-uicollectionviewcell-in-swift
-        //http://flexmonkey.blogspot.co.at/2014/11/improved-interaction-design-for.html
-        let longPressGR = UILongPressGestureRecognizer(target: self, action: Selector("handleLongPress"))
-        longPressGR.minimumPressDuration = 1.0
-        longPressGR.delaysTouchesBegan = true
-        longPressGR.delegate = self
-        collectionView?.addGestureRecognizer(longPressGR)
     }
     
-    func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
+        if memeManager.getSize() == 0 {
+            let memeEditorViewController = storyboard?.instantiateViewControllerWithIdentifier("MemeEditorViewController") as! MemeEditorViewController
+            presentViewController(memeEditorViewController, animated: true, completion: nil)
+        }
+        
+        collectionView?.reloadData()
     }
-
+    
+    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return memeManager.getSize()
     }

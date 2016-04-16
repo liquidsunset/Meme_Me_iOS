@@ -17,6 +17,8 @@ class MemeDetailViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: #selector(MemeDetailViewController.showMemeEditor(_:)))
         memeImageView.image = meme.memedImage
         tabBarController?.tabBar.hidden = true
     }
@@ -27,8 +29,12 @@ class MemeDetailViewController: UIViewController {
     }
     
     @IBAction func showMemeEditor(sender: UIBarButtonItem) {
-        let memeEditViewController = storyboard?.instantiateViewControllerWithIdentifier("MemeEditorViewController") as! MemeEditorViewController
-        memeEditViewController.meme = meme
-        navigationController?.pushViewController(memeEditViewController, animated: true)
+        let memeEditorViewController = storyboard?.instantiateViewControllerWithIdentifier("MemeEditorViewController") as! MemeEditorViewController
+        
+        presentViewController(memeEditorViewController, animated: true, completion: {
+            memeEditorViewController.setMeme(self.meme)
+        })
+
     }
+    
 }

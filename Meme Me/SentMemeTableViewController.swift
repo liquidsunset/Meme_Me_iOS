@@ -17,8 +17,8 @@ class SentMemeTableViewController: UITableViewController {
         super.viewWillAppear(animated)
 
         if memeManager.getSize() == 0 {
-            let memeEditorcontroller = storyboard?.instantiateViewControllerWithIdentifier("MemeEditorViewController") as! MemeEditorViewController
-            presentViewController(memeEditorcontroller, animated: true, completion: nil)
+            let memeEditorViewController = storyboard?.instantiateViewControllerWithIdentifier("MemeEditorViewController") as! MemeEditorViewController
+            presentViewController(memeEditorViewController, animated: true, completion: nil)
         }
         
         tableView.reloadData()
@@ -65,8 +65,8 @@ class SentMemeTableViewController: UITableViewController {
     }
     
     func showMemeEditor() {
-        let memeEditorcontroller = storyboard?.instantiateViewControllerWithIdentifier("MemeEditorViewController") as! MemeEditorViewController
-        presentViewController(memeEditorcontroller, animated: true, completion: nil)
+        let memeEditorViewController = storyboard?.instantiateViewControllerWithIdentifier("MemeEditorViewController") as! MemeEditorViewController
+        presentViewController(memeEditorViewController, animated: true, completion: nil)
     }
     
 }
