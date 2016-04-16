@@ -34,7 +34,6 @@ class MemeDetailViewController: UIViewController {
         presentViewController(memeEditorViewController, animated: true, completion: {
             memeEditorViewController.setMeme(self.meme)
         })
-
     }
     
 }
